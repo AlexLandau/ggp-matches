@@ -1,0 +1,14 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.immutables:value:2.3.9'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.8.5'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.5'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-guava:2.8.5'
+    compile 'com.google.guava:guava:20.0'
+}
