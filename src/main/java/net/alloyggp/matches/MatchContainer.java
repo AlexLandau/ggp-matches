@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Value.Immutable
-@Value.Style()
 @JsonSerialize(as = ImmutableMatchContainer.class)
 @JsonDeserialize(builder = ImmutableMatchContainer.Builder.class)
 public interface MatchContainer {
