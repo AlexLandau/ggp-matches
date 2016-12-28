@@ -5,6 +5,7 @@ import org.immutables.value.Value;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 
 @Value.Immutable
@@ -21,11 +22,11 @@ public interface MatchInfo {
 //    ImmutableList<Long> stateTimes();
 //    ImmutableList<ImmutableList<String>> errors();
     ImmutableList<Integer> goalValues();
-    String matchHostSignature();
+    Optional<String> matchHostSignature();
     int startClock();
     String matchId();
     String gameMetaURL();
-    String matchHostPK();
+    Optional<String> matchHostPK();
     boolean isCompleted();
 //    String tournamentNameFromHost();
 
