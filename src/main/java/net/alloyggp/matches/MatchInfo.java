@@ -1,5 +1,7 @@
 package net.alloyggp.matches;
 
+import java.util.List;
+
 import org.immutables.value.Value;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -14,7 +16,7 @@ import com.google.common.collect.ImmutableList;
 @JsonDeserialize(builder = MatchInfo.Builder.class)
 public interface MatchInfo {
 //    String randomToken();
-    ImmutableList<String> playerNamesFromHost();
+    List<String> playerNamesFromHost(); // Not ImmutableList because there's a match record with null in here...
     ImmutableList<ImmutableList<String>> moves();
 //    ImmutableList<String> states();
     long startTime();

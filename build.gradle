@@ -24,3 +24,8 @@ task ingestArchives(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     main = 'net.alloyggp.matches.ingest.ArchiveIngestor'
 }
+
+task showAveragesByGame(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'net.alloyggp.matches.analysis.AverageByGame'
+}
