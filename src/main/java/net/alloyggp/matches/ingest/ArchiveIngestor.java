@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.guava.GuavaModule;
 import com.google.common.collect.ImmutableList;
@@ -43,7 +44,14 @@ public class ArchiveIngestor {
                         break;
                     }
 
-                    MatchContainer container = objectMapper.readValue(line, ImmutableMatchContainer.Builder.class).build();
+                    System.out.println("Importing match from " + archiveFilename);
+                    MatchContainer container;
+                    try {
+                        container = objectMapper.readValue(line, ImmutableMatchContainer.Builder.class).build();
+                    } catch (JsonMappingException e) {
+                        System.out.println("JSON mapping failed: " + e.getMessage());
+                        continue;
+                    }
 
                     if (!container.data().isCompleted()
                             || container.data().goalValues() == null
@@ -56,7 +64,6 @@ public class ArchiveIngestor {
                         continue;
                     }
 
-                    System.out.println("Importing match from " + archiveFilename);
                     sqlRunner.run(conn -> {
                         System.out.println("Game URL: " + container.data().gameMetaURL());
                         int gameId = GameTable.getGameId(container.data().gameMetaURL(), sqlRunner);
